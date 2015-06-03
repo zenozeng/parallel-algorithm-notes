@@ -6,8 +6,8 @@
   <meta name="generator" content="pandoc" />
   <title></title>
   <style type="text/css">code{white-space: pre;}</style>
-  <link rel="stylesheet" href="github.css" type="text/css" />
-  <link rel="stylesheet" href="styles.css" type="text/css" />
+  <link rel="stylesheet" href="../github.css" type="text/css" />
+  <link rel="stylesheet" href="../styles.css" type="text/css" />
   <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 </head>
 <body>
@@ -61,6 +61,8 @@
 <p>该算法需要 <span class="math">\(n\)</span> 个 processors，然后时间复杂度为 <span class="math">\(O(logN)\)</span></p>
 <p>注：对于位数不满足的情况，在前面 padding 0 就好了</p>
 <h2 id="prefix-algorithm-2">Prefix Algorithm 2</h2>
+<p>假设我们有 <span class="math">\(p\)</span> 个处理器，其中 <span class="math">\(p&lt;n\)</span> 我们首先将 <span class="math">\(n\)</span> 个数分为 <span class="math">\(p\)</span> 个组 对于每一个组，我们使用一个处理器通过串行普速算法进行计算其组内前缀和数组 <span class="math">\(s[g, i]\)</span>，这一步的时间复杂度为 <span class="math">\(O(n/p)\)</span> 我们注意到，每一个组的数的和就是其最后一个元素的前缀和 我们得到了 <span class="math">\(p\)</span> 个组的和，并且有 <span class="math">\(p\)</span> 个处理器可以用于操作，于是我们可以使用前文提到的算法算出组间的前缀和 <span class="math">\(S[g]\)</span>，这一步的时间复杂度为 <span class="math">\(O(\log p)\)</span> 最后我们更新每一个数的部分和： <span class="math">\[result[g, i] = s[g, i] + S[g-1]\]</span> 这一步的时间复杂度为 <span class="math">\(O(n/p)\)</span></p>
+<p>故其总体的时间复杂度为 <span class="math">\(O(n/p+\log p)\)</span> ，达到了其时间复杂度下限，即summation的复杂度</p>
 <h2 id="parallel-sorting">Parallel Sorting</h2>
 <h3 id="naive-sorting">Naive Sorting</h3>
 <h2 id="summary">Summary</h2>
