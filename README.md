@@ -13,7 +13,9 @@ This is my notes for my Parallel Algorithms course.
 
 ## TOC
 
-- [02 Prefix Sum and Parallel Sorting](http://zenozeng.github.io/parallel-algorithm-notes/dist/02.html)
+- [01 Important factors, parallel summing, machine model and parallel min](http://zenozeng.github.io/parallel-algorithm-notes/dist/01.html) by Zhang Hai
+
+- [02 Prefix Sum and Parallel Sorting](http://zenozeng.github.io/parallel-algorithm-notes/dist/02.html) by Zeno Zeng and Zhudhjen
 
 ## Dev
 
