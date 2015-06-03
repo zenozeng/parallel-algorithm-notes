@@ -14,3 +14,11 @@ This is my notes for my Parallel Algorithms course.
 ## TOC
 
 - [02 Prefix Sum and Parallel Sorting](http://zenozeng.github.io/parallel-algorithm-notes/dist/02.html)
+
+## Dev
+
+### Build
+
+```bash
+./scripts/build.sh
+```
