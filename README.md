@@ -20,5 +20,11 @@ This is my notes for my Parallel Algorithms course.
 ### Build
 
 ```bash
-./scripts/build.sh
+make build
+```
+
+### Watch
+
+```bash
+make watch
 ```
