@@ -10,3 +10,7 @@ This is my notes for my Parallel Algorithms course.
 ## Special Thanks
 
 - 火龙果
+
+## TOC
+
+- [02 Prefix Sum and Parallel Sorting](http://zenozeng.github.io/parallel-algorithm-notes)

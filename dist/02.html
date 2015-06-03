@@ -12,7 +12,7 @@
 </head>
 <body>
 <h1 id="course-02">Course 02</h1>
-<p>Time-stamp: &lt;2015-06-03 20:33:55 Zeno Zeng&gt;</p>
+<p>Time-stamp: &lt;2015-06-03 20:46:44 Zeno Zeng&gt;</p>
 <h2 id="the-prefix-sum-problem">The Prefix sum problem</h2>
 <p>See also: http://en.wikipedia.org/wiki/Prefix_sum</p>
 <h2 id="prefix-algorithm">Prefix Algorithm</h2>
@@ -62,6 +62,22 @@
 <p>注：对于位数不满足的情况，在前面 padding 0 就好了</p>
 <h2 id="prefix-algorithm-2">Prefix Algorithm 2</h2>
 <h2 id="parallel-sorting">Parallel Sorting</h2>
+<h3 id="naive-sorting">Naive Sorting</h3>
 <h2 id="summary">Summary</h2>
+<h3 id="sum">Sum</h3>
+<p><span class="math">\(T_1=O(n)\)</span></p>
+<p><span class="math">\(T_p=O(\frac{n}{p}+logP)\)</span></p>
+<h3 id="min">Min</h3>
+<p><span class="math">\(T_1=O(n)\)</span></p>
+<p><span class="math">\(T_p=O(\frac{n}{p}+loglogn)\)</span></p>
+<h3 id="interger-sorting">Interger Sorting</h3>
+<p><span class="math">\(T_1=O(n)\)</span></p>
+<p>Expecting (Randomize 算法可以实现，但是有时候会有 error): <span class="math">\(T_p=O(\frac{n}{p}+logn)\)</span></p>
+<p>TODO: Why <span class="math">\(\frac{n}{p}+logn=\frac{n}{p}+logp\)</span></p>
+<h4 id="crcw">CRCW</h4>
+<p>Any range: <span class="math">\(\frac{nloglogn}{p}+logn\)</span></p>
+<p>{0, 1, ..., <span class="math">\(n^k\)</span>}: <span class="math">\(\frac{nloglogn}{p}\)</span></p>
+<h4 id="erew">EREW</h4>
+<p><span class="math">\(n\frac{\sqrt{logn}}{p}+logn\)</span></p>
 </body>
 </html>
