@@ -10,7 +10,7 @@
 </head>
 <body>
 <h1 id="course-02">Course 02</h1>
-<p>Time-stamp: &lt;2015-06-03 19:12:11 Zeno Zeng&gt;</p>
+<p>Time-stamp: &lt;2015-06-03 19:31:45 Zeno Zeng&gt;</p>
 <h2 id="the-prefix-sum-problem">The Prefix sum problem</h2>
 <p>See also: http://en.wikipedia.org/wiki/Prefix_sum</p>
 <h2 id="prefix-algorithm-1">Prefix Algorithm 1</h2>
@@ -19,13 +19,40 @@
 <table>
 <tbody>
 <tr class="odd">
-<td align="left">第一代</td>
+<td align="left">第0代</td>
 <td align="center">1</td>
 <td align="center">2</td>
 <td align="center">3</td>
 <td align="center">4</td>
 <td align="center">5</td>
 <td align="center">6</td>
+</tr>
+<tr class="even">
+<td align="left">第1代（2项）</td>
+<td align="center">1</td>
+<td align="center">1+2=3</td>
+<td align="center">2+3=5</td>
+<td align="center">3+4=7</td>
+<td align="center">4+5=9</td>
+<td align="center">5+6=11</td>
+</tr>
+<tr class="odd">
+<td align="left">第2代（4项）</td>
+<td align="center">1</td>
+<td align="center">0*2+3=3</td>
+<td align="center">0+1+5=6</td>
+<td align="center">3+7=10</td>
+<td align="center">5+9=14</td>
+<td align="center">7+11=18</td>
+</tr>
+<tr class="even">
+<td align="left">第3代（8项）</td>
+<td align="center">1</td>
+<td align="center">0*6+3=3</td>
+<td align="center">0*4+6=6</td>
+<td align="center">0*4+10=10</td>
+<td align="center">0*3+1+14=15</td>
+<td align="center">3+18=21</td>
 </tr>
 </tbody>
 </table>
