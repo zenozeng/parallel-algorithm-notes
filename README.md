@@ -1,4 +1,4 @@
-# parallel-algorithm-notes
+# Parallel Algorithm Notes
 
 This is my notes for my Parallel Algorithms course.
 
