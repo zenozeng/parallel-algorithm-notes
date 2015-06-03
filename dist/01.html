@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../static/github.css" type="text/css" />
+  <link rel="stylesheet" href="../static/styles.css" type="text/css" />
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="lecture-1">Lecture 1</h1>
+<h2 id="parallel-algorithm">Parallel Algorithm</h2>
+<p>Important factors:</p>
+<ol style="list-style-type: decimal">
+<li><p>Number of processors</p></li>
+<li><p>Time</p></li>
+</ol>
+<p>Operation is the product of time and number of processors.</p>
+<h2 id="example-1">Example 1</h2>
+<p>Summing <span class="math">\(n\)</span> numbers</p>
+<ol style="list-style-type: decimal">
+<li><p>Divide and conquer with <span class="math">\(\frac{n}2\)</span> processors. Then we can always do each step in parallel, so the time is the number of steps, <span class="math">\(log(n)\)</span>.</p>
+<pre><code>for (i = 0, i &lt; log(n), ++i) {
+    for P % 2^(i+1) == 0 do in parallel {
+        // P starts with 0.
+        A[P] = A[P] + A[P+2^i];
+    }
+}</code></pre></li>
+<li><p>Use less processors. Group by <span class="math">\(log(n)\)</span> numbers, and use <span class="math">\(\frac{n}{log(n)}\)</span> processors. Then we have one processor for each group, and we can sum each group sequentially in <span class="math">\(log(n)\)</span> time, then use all the <span class="math">\(\frac{n}{log(n)}\)</span> processors to add <span class="math">\(\frac{n}{log(n)}\)</span> numbers divide and conquer in <span class="math">\(log(\frac{n}{log(n)})\)</span> time. The overall time is still <span class="math">\(O(log(n))\)</span>.</p></li>
+</ol>
+<p>Theorem for lower bound of time: A step with <span class="math">\(P\)</span> processors in <span class="math">\(T\)</span> time can be translated into a sequential processor in <span class="math">\(P\cdot{T}\)</span> time.</p>
+<p>So for best sequential time <span class="math">\(T_1\)</span>, then <span class="math">\(P\cdot{T_P}\geq{T}_1\)</span>.</p>
+<p>So for summing, the sequential time is <span class="math">\(O(n)\)</span> (in fact <span class="math">\(n-1\)</span>), this is the lower bound for <span class="math">\(P\cdot{T}\)</span></p>
+<h2 id="machine-model">Machine Model</h2>
+<p>PRAM: Parallel Random Access Machine.</p>
+<p>EREW: Exclusive read exclusive write.</p>
+<p>CREW: Concurrent read exclusive write.</p>
+<p>CRCW: Concurrent read concurrent write. Conflict-resolution includes arbitrary, priority (by process index), common (have to write same value). Common &lt; arbitrary &lt; priority.</p>
+<h2 id="example-2">Example 2</h2>
+<p>Find smallest number:</p>
+<ol style="list-style-type: decimal">
+<li><p>Naive: <span class="math">\(n^2\)</span> processors, set 1 on the larger number, return the number with 0. The time is constant.</p></li>
+<li><p>Use less processors. Group by <span class="math">\(n^{\frac{1}{2}}\)</span>, each group uses <span class="math">\(n\)</span> processors, altogether <span class="math">\(n^{\frac{3}{2}}\)</span> processors. Then merge within constant time.</p></li>
+<li><p><span class="math">\(n\)</span> numbers, <span class="math">\(n^{\frac{5}{4}}\)</span> processors: Group by <span class="math">\(n^{\frac{1}{4}}\)</span>, the needed number of processors is just <span class="math">\((n^{\frac{1}{4}})^2\cdot{n}^{\frac{3}{4}}\)</span>. Then there are <span class="math">\(n^{\frac{3}{4}}\)</span> numbers to merge, group by <span class="math">\(n^{\frac{3}{8}}\)</span>, the needed number of processors is <span class="math">\(n^{\frac{9}{8}}\)</span>, less than <span class="math">\(n^{\frac{5}{4}}\)</span>.</p></li>
+<li><p><span class="math">\(n\)</span> numbers, <span class="math">\(n\)</span> processors: Group by <span class="math">\(\sqrt{n}\)</span>, can be merged with available <span class="math">\(n\)</span> processors; Subgroup by <span class="math">\(n^{\frac{1}{4}}\)</span>, can be merged with available <span class="math">\(\sqrt{n}\)</span> processors, till the end. <span class="math">\(T(n,n)=1+T(n^{\frac{1}{2}},n^{\frac{1}{2}})=i+T(n^{\frac{1}{2^i}},n^{\frac{1}{2^i}})\)</span>. When <span class="math">\(n^{\frac{1}{2^i}}\)</span> is constant <span class="math">\(c\)</span>, then <span class="math">\(i\)</span> is <span class="math">\(log(log(n))\)</span>.</p></li>
+</ol>
+<p>Maximum independent set: The maximum set of vertices with no connecting edges between them.</p>
+<ol start="6" style="list-style-type: decimal">
+<li>When we have an algorithm using <span class="math">\(P\)</span> processors running in <span class="math">\(T_P\)</span> time, then we can simulate this algorithm with <span class="math">\(p&lt;P\)</span> processors within <span class="math">\(\frac{P\cdot{T}_P}{p}+T_p\)</span>. So this is linear for <span class="math">\(p&gt;n\)</span>, since we have <span class="math">\(log(log(n))\)</span> for <span class="math">\(n\)</span> and <span class="math">\(1\)</span> for <span class="math">\(n^{\frac{5}{4}}\)</span>.</li>
+</ol>
+</body>
+</html>
