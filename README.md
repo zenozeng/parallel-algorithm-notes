@@ -19,6 +19,8 @@ This is my notes for my Parallel Algorithms course.
 
 ## Dev
 
+All source is written in Github Favored Markdown and converted to html using pandoc (with MathJax).
+
 ### Build
 
 ```bash
