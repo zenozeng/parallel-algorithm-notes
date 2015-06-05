@@ -12,7 +12,6 @@
 </head>
 <body>
 <h1 id="lecture-02">Lecture 02</h1>
-<p>Time-stamp: &lt;2015-06-03 22:48:50 Zeno Zeng&gt;</p>
 <h2 id="the-prefix-sum-problem">The Prefix sum problem</h2>
 <p>See also: <a href="http://en.wikipedia.org/wiki/Prefix_sum">http://en.wikipedia.org/wiki/Prefix_sum</a></p>
 <h2 id="prefix-sum">Prefix Sum</h2>
@@ -22,7 +21,7 @@
 <table>
 <thead>
 <tr class="header">
-<th align="left">第N代</th>
+<th align="left">第 N 代</th>
 <th align="left"><span class="math">\(a_0\)</span></th>
 <th align="left"><span class="math">\(a_1\)</span></th>
 <th align="left"><span class="math">\(a_2\)</span></th>
@@ -73,25 +72,30 @@
 <p>该算法需要 <span class="math">\(n\)</span> 个 processors，然后时间复杂度为 <span class="math">\(O(logN)\)</span></p>
 <p>注：对于位数不满足的情况，在前面 padding 0 就好了</p>
 <h3 id="processors-n-1">processors &lt; n</h3>
-<p>假设我们有 <span class="math">\(p\)</span> 个处理器，其中 <span class="math">\(p&lt;n\)</span> 我们首先将 <span class="math">\(n\)</span> 个数分为 <span class="math">\(p\)</span> 个组 对于每一个组，我们使用一个处理器通过串行普速算法进行计算其组内前缀和数组 <span class="math">\(s[g, i]\)</span>，这一步的时间复杂度为 <span class="math">\(O(n/p)\)</span> 我们注意到，每一个组的数的和就是其最后一个元素的前缀和 我们得到了 <span class="math">\(p\)</span> 个组的和，并且有 <span class="math">\(p\)</span> 个处理器可以用于操作，于是我们可以使用前文提到的算法算出组间的前缀和 <span class="math">\(S[g]\)</span>，这一步的时间复杂度为 <span class="math">\(O(\log p)\)</span> 最后我们更新每一个数的部分和： <span class="math">\[result[g, i] = s[g, i] + S[g-1]\]</span> 这一步的时间复杂度为 <span class="math">\(O(\frac{n}{p})\)</span></p>
+<p>假设我们有 <span class="math">\(p\)</span> 个处理器，其中 <span class="math">\(p&lt;n\)</span> 我们首先将 <span class="math">\(n\)</span> 个数分为 <span class="math">\(p\)</span> 个组 对于每一个组，我们使用一个处理器通过串行朴素算法进行计算其组内前缀和数组 <span class="math">\(s[g, i]\)</span>， 这一步的时间复杂度为 <span class="math">\(O(\frac{n}{p})\)</span> 我们注意到，每一个组的数的和就是其最后一个元素的前缀和 我们得到了 <span class="math">\(p\)</span> 个组的和，并且有 <span class="math">\(p\)</span> 个处理器可以用于操作。 于是我们可以使用前文提到的算法算出组间的前缀和 <span class="math">\(S[g]\)</span>，这一步的时间复杂度为 <span class="math">\(O(\log p)\)</span>。 最后我们更新每一个数的部分和： <span class="math">\[result[g, i] = s[g, i] + S[g-1]\]</span> 这一步的时间复杂度为 <span class="math">\(O(\frac{n}{p})\)</span></p>
 <p>故其总体的时间复杂度为 <span class="math">\(O(\frac{n}{p}+\log p)\)</span> ，达到了其时间复杂度下限，即summation的复杂度</p>
-<h2 id="prefix-min">Prefix Min</h2>
-<h2 id="parallel-sorting">Parallel Sorting</h2>
+<p>注：因为对于数列的最后一个数，其 prefix sum 的值即为数列的 sum， 所以 prefix sum 的时间复杂度下限即为 sum 运算。</p>
+<h2 id="prefix-problem-and-binary-tree">Prefix Problem and Binary Tree</h2>
 <h2 id="summary">Summary</h2>
 <h3 id="sum">Sum</h3>
 <p><span class="math">\(T_1=O(n)\)</span></p>
-<p><span class="math">\(T_p=O(\frac{n}{p}+logP)\)</span></p>
+<p><span class="math">\(T_p=O(\frac{n}{p}+\log{p})\)</span></p>
 <h3 id="min">Min</h3>
 <p><span class="math">\(T_1=O(n)\)</span></p>
-<p><span class="math">\(T_p=O(\frac{n}{p}+loglogn)\)</span></p>
+<p><span class="math">\(T_p=O(\frac{n}{p}+\log\log{n})\)</span></p>
 <h3 id="interger-sorting">Interger Sorting</h3>
 <p><span class="math">\(T_1=O(n)\)</span></p>
-<p>Expecting (Randomize 算法可以实现，但是有时候会有 error): <span class="math">\(T_p=O(\frac{n}{p}+\log n)\)</span></p>
-<p>TODO: Why <span class="math">\(\frac{n}{p}+logn=\frac{n}{p}+\log p\)</span></p>
+<p>Expecting (Randomize 算法可以实现，但是有时候会有 error): <span class="math">\[
+T_p=O(\frac{n}{p}+\log n)
+\]</span></p>
+<h4 id="why-fracnplognfracnplogp">Why <span class="math">\(\frac{n}{p}+\log{n}=\frac{n}{p}+\log{p}\)</span> ?</h4>
+<p>当 <span class="math">\(n\)</span> 远大于 <span class="math">\(p\)</span> 时，此时由于 <span class="math">\(\log{n}\)</span> 为小项，故消去，两式相等。</p>
+<p>当 <span class="math">\(p\)</span> 较大时，由于实际只有 n 需要操作，所以两项还是相等。</p>
+<p>See also: <a href="https://github.com/zenozeng/parallel-algorithm-notes/issues/5">#5</a></p>
 <h4 id="crcw">CRCW</h4>
-<p>Any range: <span class="math">\(\frac{n\log\log n}{p}+logn\)</span></p>
+<p>Any range: <span class="math">\(\frac{n\log\log n}{p}+\log{n}\)</span></p>
 <p>{0, 1, ..., <span class="math">\(n^k\)</span>}: <span class="math">\(\frac{n\log\log n}{p}\)</span></p>
 <h4 id="erew">EREW</h4>
-<p><span class="math">\(n\frac{\sqrt{\log n}}{p}+\log n\)</span></p>
+<p><span class="math">\(n\frac{\sqrt{\log n}}{p}+\log{n}\)</span></p>
 </body>
 </html>
