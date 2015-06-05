@@ -12,3 +12,5 @@ do
     file=$(echo $file | sed 's/src\///' | sed 's/\.md//')
     build $file
 done
+
+cp src/*.gif dist
