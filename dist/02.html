@@ -76,6 +76,12 @@
 <p>故其总体的时间复杂度为 <span class="math">\(O(\frac{n}{p}+\log p)\)</span> ，达到了其时间复杂度下限，即summation的复杂度</p>
 <p>注：因为对于数列的最后一个数，其 prefix sum 的值即为数列的 sum， 所以 prefix sum 的时间复杂度下限即为 sum 运算。</p>
 <h2 id="prefix-problem-and-binary-tree">Prefix Problem and Binary Tree</h2>
+<p>每一个节点都会收到一个信号值， 该节点将该信号值传递给左叶子， 然后将左叶子的值与信号值的和传递给右叶子。 当信号传递到底部的时候就可以得到预期的 <span class="math">\(a_{0k}\)</span> 了。</p>
+<div class="figure">
+<img src="02-tree.gif" alt="Tree" /><p class="caption">Tree</p>
+</div>
+<p>此外，可以观察到的是，这棵树的横向尺度表达了其需要的 processors， 而其纵向尺度则表达了其需要的时间。</p>
+<p>注：<span class="math">\(a_{ij}\)</span> 表示从 <span class="math">\(index = i\)</span> 加到 <span class="math">\(index = j\)</span>。</p>
 <h2 id="summary">Summary</h2>
 <h3 id="sum">Sum</h3>
 <p><span class="math">\(T_1=O(n)\)</span></p>
