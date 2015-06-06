@@ -6,6 +6,25 @@
   <meta name="generator" content="pandoc" />
   <title></title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
   <link rel="stylesheet" href="../static/github.css" type="text/css" />
   <link rel="stylesheet" href="../static/styles.css" type="text/css" />
   <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
@@ -69,7 +88,7 @@
 </tr>
 </tbody>
 </table>
-<p>该算法需要 <span class="math">\(n\)</span> 个 processors，然后时间复杂度为 <span class="math">\(O(logN)\)</span></p>
+<p>该算法需要 <span class="math">\(n\)</span> 个 processors，然后时间复杂度为 <span class="math">\(O(\log{n})\)</span></p>
 <p>注：对于位数不满足的情况，在前面 padding 0 就好了</p>
 <h3 id="processors-n-1">processors &lt; n</h3>
 <p>假设我们有 <span class="math">\(p\)</span> 个处理器，其中 <span class="math">\(p&lt;n\)</span> 我们首先将 <span class="math">\(n\)</span> 个数分为 <span class="math">\(p\)</span> 个组 对于每一个组，我们使用一个处理器通过串行朴素算法进行计算其组内前缀和数组 <span class="math">\(s[g, i]\)</span>， 这一步的时间复杂度为 <span class="math">\(O(\frac{n}{p})\)</span> 我们注意到，每一个组的数的和就是其最后一个元素的前缀和 我们得到了 <span class="math">\(p\)</span> 个组的和，并且有 <span class="math">\(p\)</span> 个处理器可以用于操作。 于是我们可以使用前文提到的算法算出组间的前缀和 <span class="math">\(S[g]\)</span>，这一步的时间复杂度为 <span class="math">\(O(\log p)\)</span>。 最后我们更新每一个数的部分和： <span class="math">\[result[g, i] = s[g, i] + S[g-1]\]</span> 这一步的时间复杂度为 <span class="math">\(O(\frac{n}{p})\)</span></p>
@@ -82,6 +101,25 @@
 </div>
 <p>此外，可以观察到的是，这棵树的横向尺度表达了其需要的 processors， 而其纵向尺度则表达了其需要的时间。</p>
 <p>注：<span class="math">\(a_{ij}\)</span> 表示从 <span class="math">\(index = i\)</span> 加到 <span class="math">\(index = j\)</span>。</p>
+<h2 id="parallel-sorting">Parallel Sorting</h2>
+<ol style="list-style-type: decimal">
+<li><p>Bucket Sorting</p>
+<p>对于 <span class="math">\(n\)</span> 个 numbers，我们把它分成 <span class="math">\(\frac{n}{p}\)</span> 组，每组有 <span class="math">\(p\)</span> 个。 然后我们准备 types(数的种类数，这里我们假设为 <span class="math">\(\frac{n}{p}\)</span> 种) 个桶，对于每个桶我们准备 <span class="math">\(p\)</span> 个槽。 所以对于某个处理器#<span class="math">\(i\)</span>正在处理的数 <span class="math">\(x\)</span>，我们首先基于 <span class="math">\(x\)</span> 找到其对应的桶， 然后根据处理器的序号 <span class="math">\(i\)</span> 找到对应的槽，放入。</p>
+<p>每个槽存的其实是 count 和指针。</p></li>
+<li><p>Prefix Summing</p>
+<p>有了 count 之后我们做 prefix sum 就能得到其 index 范围。</p></li>
+<li><p>Create Array</p>
+<p>在上一步中，我们得到了（一共 <span class="math">\(n\)</span> 条）：</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript">[
+    { <span class="dt">bucket</span>: <span class="dv">0</span>, <span class="dt">slot</span>: <span class="dv">0</span>, <span class="dt">index</span>: <span class="dv">2</span>}，
+    { <span class="dt">bucket</span>: <span class="dv">0</span>, <span class="dt">slot</span>: <span class="dv">1</span>, <span class="dt">index</span>: <span class="dv">5</span>},
+    { <span class="dt">bucket</span>: <span class="dv">1</span>, <span class="dt">slot</span>: <span class="dv">0</span>, <span class="dt">index</span>: <span class="dv">9</span>},
+    { <span class="dt">bucket</span>: <span class="dv">1</span>, <span class="dt">slot</span>: <span class="dv">1</span>, <span class="dt">index</span>: <span class="dv">12</span>},
+    ...
+]</code></pre>
+<p>然后我们将所有每一条数据交给 processor 去做，如对第一条数据我们知道 index 为 2， 然后我们查之前的 count 数组里的数据，查到 count 为 2。 这样我们就知道 arr[0] 和 arr[1] 都应该是 0。</p>
+<p>注：slot#n 应交给 processor#n，这样保证了每个 processor 不会有超过 <span class="math">\(\frac{n}{p}\)</span> 个数要处理。</p></li>
+</ol>
 <h2 id="summary">Summary</h2>
 <h3 id="sum">Sum</h3>
 <p><span class="math">\(T_1=O(n)\)</span></p>
