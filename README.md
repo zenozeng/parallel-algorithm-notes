@@ -11,6 +11,8 @@ This is our (mainly mine and Zhudhjen's) notes for Parallel Algorithms course.
 
 - 火龙果
 
+- xqy
+
 ## TOC
 
 1. [Important factors, parallel summing, machine model and parallel min](http://zenozeng.github.io/parallel-algorithm-notes/dist/01.html) by Zhang Hai

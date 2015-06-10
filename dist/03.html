@@ -82,7 +82,9 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <p>然后我们再四分之，对于各自 forward / backward 过线的 link 然后新的两种颜色。</p>
 <p>这样我们可以在 <span class="math">\(\log{n}\)</span> 的时间内染好所有色，一共用掉 <span class="math">\(2\log{n}\)</span> 种颜色。</p>
 <p>那么如何验证一条 link 是否 forward 或者 backward 一条分界线呢？ 我们来看上面这张图。第一行是 array 的 index，下面是其二进制。 我们注意到对于跨过 <span class="math">\(3\)</span> 和 <span class="math">\(4\)</span> 的分隔线的两点，其最高位的 bit 不一致。 对于跨过 <span class="math">\(1\)</span> 和 <span class="math">\(2\)</span> 的分割线的两点，其最高位一致，但是次高位不一致。 <span class="math">\(0\)</span> 和 <span class="math">\(1\)</span> 之间的分割线同理。</p>
-<h2 id="todo-树的整合">TODO 树的整合</h2>
+<h2 id="pack-array">Pack Array</h2>
+<p>每次缩减尺寸之后，由于一些点被移除了，我们需要重新 pack array（就是把有效项移动到前面去）， 这样我们才能继续使用我们之前所说的二分算法。否则时间上就只是 <span class="math">\(n\)</span> 而不是 <span class="math">\(\frac{2}{3}n\)</span>。 所以我们把需要保留的点标记为 1 而剩下的点标记为 0，然后做一次 prefix sum， 这样我们就得到了新的 array。</p>
+<h2 id="todo-整个过程">TODO 整个过程</h2>
 <h2 id="todo-与之前的算法整合">TODO 与之前的算法整合</h2>
 </body>
 </html>
