@@ -6,11 +6,48 @@
   <meta name="generator" content="pandoc" />
   <title></title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
   <link rel="stylesheet" href="../static/github.css" type="text/css" />
   <link rel="stylesheet" href="../static/styles.css" type="text/css" />
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 </head>
 <body>
 <h1 id="lecture-03">Lecture 03</h1>
-<p>我忘了把平板带回寝室了。所以看不到笔记。</p>
+<h2 id="引子">引子</h2>
+<div class="figure">
+<img src="03-linked-list.png" alt="linked list" /><p class="caption">linked list</p>
+</div>
+<p>如图，现在假设我们有一个存在 array 中的链表， 然后我们需要将其依序存在 array 中（就是把这个链表弄弄直）。</p>
+<p>在线性算法中，我们需要 <span class="math">\(O(n)\)</span> 的时间来完成这个需求。 现在我们需要并行地完成它， 你会马上想到利用我们前面学过的建树来解决这个问题， 但是如果对每个元素直接建树，你会发现每次只能缩减一个（如下图）。 这不是我们想要的。</p>
+<div class="figure">
+<img src="03-bad-tree.png" alt="bad tree" /><p class="caption">bad tree</p>
+</div>
+<h2 id="链表建树">链表建树</h2>
+<p>在之前的课中，我们利用二分的策略来完成我们的建树工作，而在链表中，相似的， 我们引入 pointer jumping 的概念：</p>
+<pre class="sourceCode javascript"><code class="sourceCode javascript">A[i].<span class="fu">next</span> = A[i].<span class="ot">next</span>.<span class="fu">next</span>;</code></pre>
+<div class="figure">
+<img src="03-tree.png" alt="tree" /><p class="caption">tree</p>
+</div>
+<p>先看第一层，我们首先找到当前一个链表中的最大无关集（图中画了下滑线的点，后文我们会描述相关算法）。 找到最大无关集后我们对其和其 next 节点进行建树，由于是无关集， 所以保证了不会发生上面那个坏树的情况。 从第一层到第二层，我们可以发现相邻两个节点被合并， 而孤节点则直接被拉上来（通过 pointer jumping）。 这个过程我们称为 symmetry breaking。 重复这个过程，我们就能建出一颗树。</p>
+<p>注：由于是直接取指针，不是赋值，所以不要担心层迭代时的性能。</p>
+<h2 id="寻找链表中最大无关集">寻找链表中最大无关集</h2>
 </body>
 </html>
