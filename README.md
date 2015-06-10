@@ -1,6 +1,6 @@
 # Parallel Algorithm Notes
 
-This is our (mainly mine and Zhudhjen's) notes for my Parallel Algorithms course.
+This is our (mainly mine and Zhudhjen's) notes for Parallel Algorithms course.
 
 作为一个外专业的弱菜，我决定建个笔记 repo 来帮助我进行思考。
 希望能有一种持久的形式作为基础，毕竟“心智之中并无词典”。

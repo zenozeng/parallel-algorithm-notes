@@ -48,6 +48,26 @@ code > span.er { color: #ff0000; font-weight: bold; }
 </div>
 <p>先看第一层，我们首先找到当前一个链表中的最大无关集（图中画了下滑线的点，后文我们会描述相关算法）。 找到最大无关集后我们对其和其 next 节点进行建树，由于是无关集， 所以保证了不会发生上面那个坏树的情况。 从第一层到第二层，我们可以发现相邻两个节点被合并， 而孤节点则直接被拉上来（通过 pointer jumping）。 这个过程我们称为 symmetry breaking。 重复这个过程，我们就能建出一颗树。</p>
 <p>注：由于是直接取指针，不是赋值，所以不要担心层迭代时的性能。</p>
+<p>注2：</p>
+<ul>
+<li><p><strong>maximal independent set</strong>: could not add one more point</p></li>
+<li><p><strong>maximum independent set</strong>: number is max</p></li>
+</ul>
+<p>如：</p>
+<p>[<span class="math">\(a_0\)</span>, <span class="math">\(\underline{a_1}\)</span>, <span class="math">\(a_2\)</span>, <span class="math">\(\underline{a_3}\)</span>, <span class="math">\(a_4\)</span>] 是一个 maximal independent set，因为不能再加入任意一个点了，但它在数值上不是最大的。 maximum independent set 应该是 [<span class="math">\(\underline{a_0}\)</span>, <span class="math">\(a_1\)</span>, <span class="math">\(\underline{a_2}\)</span>, <span class="math">\(a_3\)</span>, <span class="math">\(\underline{a_4}\)</span>]</p>
+<p>这里我们讨论的都是 maximal 的情况，因为 maximum 往往并不好找。</p>
 <h2 id="寻找链表中最大无关集">寻找链表中最大无关集</h2>
+<h3 id="当我们有个染好色的链表">当我们有个染好色的链表</h3>
+<p>现在假设我们有一个染好色的链表，一共三种颜色， 而且我们保证了相邻两个节点不会有相同的颜色：</p>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({ TeX: { extensions: ["color.js"] }});
+</script>
+
+<p>[<span class="math">\(\color{red} a_0\)</span>, <span class="math">\(\color{green} a_1\)</span>, <span class="math">\(\color{red} a_2\)</span>, <span class="math">\(\color{blue} a_3\)</span>, <span class="math">\(\color{red} a_4\)</span>, <span class="math">\(\color{green} a_5\)</span>, <span class="math">\(\color{blue} a_6\)</span>]</p>
+<p>然后我们从里面取一个颜色，比如红色，就能取到一个无关集。</p>
+<p>[<span class="math">\(\color{red} \underline{a_0}\)</span>, <span class="math">\(\color{green} a_1\)</span>, <span class="math">\(\color{red} \underline{a_2}\)</span>, <span class="math">\(\color{blue} a_3\)</span>, <span class="math">\(\color{red} \underline{a_4}\)</span>, <span class="math">\(\color{green} a_5\)</span>, <span class="math">\(\color{blue} a_6\)</span>]</p>
+<p>然后我们在对蓝色的每一个元素做检查，如果其相邻元素不在当前的 set 中，就插入。 这样我们就可以得到一个最大无关集。</p>
+<p>[<span class="math">\(\color{red} \underline{a_0}\)</span>, <span class="math">\(\color{green} a_1\)</span>, <span class="math">\(\color{red} \underline{a_2}\)</span>, <span class="math">\(\color{blue} a_3\)</span>, <span class="math">\(\color{red} \underline{a_4}\)</span>, <span class="math">\(\color{green} a_5\)</span>, <span class="math">\(\color{blue} \underline{a_6}\)</span>]</p>
+<h3 id="那么如何染色呢">那么如何染色呢？</h3>
 </body>
 </html>

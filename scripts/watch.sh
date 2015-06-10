@@ -1,4 +1,4 @@
 while true; do
     ./scripts/build.sh
-    sleep 1
+    inotifywait -e modify src
 done
