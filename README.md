@@ -17,6 +17,8 @@ This is our (mainly mine and Zhudhjen's) notes for my Parallel Algorithms course
 
 2. [Prefix Sum and Parallel Sorting](http://zenozeng.github.io/parallel-algorithm-notes/dist/02.html) by Zeno Zeng and Zhudhjen
 
+3. [Linked List](http://zenozeng.github.io/parallel-algorithm-notes/dist/03.html) by Zeno Zeng
+
 ## Dev
 
 All source is written in Github Favored Markdown and converted to html using pandoc (with MathJax).
