@@ -51,7 +51,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <p>像这样：</p>
 <p>[<span class="math">\(a_0\)</span>, <span class="math">\(\underline{a_1}\)</span>, <span class="math">\(a_2\)</span>, <span class="math">\(a_3\)</span>, <span class="math">\(\underline{a_4}\)</span>, <span class="math">\(a_5\)</span>]</p>
 <p>所以最坏情况下我们有 <span class="math">\(n_{i+1}=\frac{2}{3}n_i\)</span>， 所以这一部分我们需要 <span class="math">\(\log_{1.5}{n}\)</span> 步数。</p>
-<p>注：由于是直接取指针，不是赋值，所以不要担心层迭代时的性能。</p>
+<p>注：由于是直接取指针，不是拷贝赋值，所以不要担心层迭代时的性能。</p>
 <p>注2：</p>
 <ul>
 <li><p><strong>maximal independent set</strong>: could not add one more point</p></li>
@@ -84,7 +84,13 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <p>那么如何验证一条 link 是否 forward 或者 backward 一条分界线呢？ 我们来看上面这张图。第一行是 array 的 index，下面是其二进制。 我们注意到对于跨过 <span class="math">\(3\)</span> 和 <span class="math">\(4\)</span> 的分隔线的两点，其最高位的 bit 不一致。 对于跨过 <span class="math">\(1\)</span> 和 <span class="math">\(2\)</span> 的分割线的两点，其最高位一致，但是次高位不一致。 <span class="math">\(0\)</span> 和 <span class="math">\(1\)</span> 之间的分割线同理。</p>
 <h2 id="pack-array">Pack Array</h2>
 <p>每次缩减尺寸之后，由于一些点被移除了，我们需要重新 pack array（就是把有效项移动到前面去）， 这样我们才能继续使用我们之前所说的二分算法。否则时间上就只是 <span class="math">\(n\)</span> 而不是 <span class="math">\(\frac{2}{3}n\)</span>。 所以我们把需要保留的点标记为 1 而剩下的点标记为 0，然后做一次 prefix sum， 这样我们就得到了新的 array。</p>
-<h2 id="todo-整个过程">TODO 整个过程</h2>
+<h2 id="整个过程">整个过程</h2>
+<ol style="list-style-type: decimal">
+<li><p>Coloring</p></li>
+<li><p>Sort nodes by color</p></li>
+<li><p>Get maximal independent set</p></li>
+<li><p>Merge nodes</p></li>
+</ol>
 <h2 id="todo-与之前的算法整合">TODO 与之前的算法整合</h2>
 </body>
 </html>
