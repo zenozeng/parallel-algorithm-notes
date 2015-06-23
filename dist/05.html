@@ -20,7 +20,7 @@
 <p>这里我们说的高度为其格数，然后其　weight 为 1, 2, 4, 8... 然后我们就可以证明经过一次　round，总 weight 至少减少　<span class="math">\(\frac{1}{4}\)</span>。</p>
 <p>由于　<span class="math">\(weight &gt; 1\)</span>，所以必然有　<span class="math">\(node.length &gt; \sum{weight}\)</span>。</p>
 <h2 id="bitonic-merging">Bitonic Merging</h2>
-<p>假设我们有两个排好序的数列，他们方向相反，我们把他们接起来</p>
+<p>假设我们有两个<strong>排好序</strong>的数列，他们方向相反，我们把他们接起来</p>
 <p><span class="math">\[
 2 - 5 - 7 - 8 - 10
 \]</span></p>
@@ -122,5 +122,39 @@
 }
 \end{xy}
 \]</span></p>
+<p>我们需要 <span class="math">\(\log{n}\)</span> steps，然后时间复杂度为 <span class="math">\(O(\frac{n}{p}\log{n}+\log{n})\)</span>。</p>
+<h2 id="bitonic-sorting">Bitonic Sorting</h2>
+<p>假设我们有这个数组需要排序。</p>
+<p><span class="math">\[
+\begin{xy}
+\xymatrix {
+      7 \ar@/^2pc/ [r]
+    &amp; 5
+    &amp; 4 \ar@/^2pc/ [r]
+    &amp; 3
+    &amp; 8 \ar@/^2pc/ [r]
+    &amp; 6
+    &amp; 2 \ar@/^2pc/ [r]
+    &amp; 1
+}
+\end{xy}
+\]</span></p>
+<p>我们将对象分为４组，每组我们将左边当成是一个数列，右边当成一个数列，我们做　Bitonic Merging。 这样我们得到了：</p>
+<p><span class="math">\[
+5 - 7 - | - 3 - 4 - || - 6 - 8 - | - 1 - 2
+\]</span></p>
+<p>然后我们将对象分为 2 组，每组我们将左边两个数当成一个数列，右边两个数当成一个数列。 我们再做　Bitonic Merging。</p>
+<p>这样有了：</p>
+<p><span class="math">\[
+3 - 4 - 5 - 7 - | - 1 - 2 - 6 - 8
+\]</span></p>
+<p>我们再做一次　Bitonic Merging， 就得到了 Sorting 的结果。</p>
+<p>Bitonic Sorting 的时间复杂度为：<span class="math">\(O(\frac{n}{p}\log^2{n}+\log^2{n})\)</span>。</p>
+<p>Hint: 如果需要简单的估算复杂度，可以直接取中间一段的最小值然后乘以那一段的 steps 作为下界。 对于上界，可以用最大复杂度乘以总体的 steps。</p>
+<h2 id="valiants-merging">Valiant's Merging</h2>
+<p>时间复杂度为：<span class="math">\(O(\frac{n}{p}\log\log{n} + \log\log{n})\)</span></p>
+<h2 id="valiants-sorting">Valiant's Sorting</h2>
+<p>就是将利用之前 Bitonic Sorting 所述的方法，将 Merging 转换为 Sorting。</p>
+<p>时间复杂度为：<span class="math">\(O(\frac{n}{p}\log{n}\log\log{n} + \log{n}\log\log{n})\)</span></p>
 </body>
 </html>
