@@ -40,3 +40,5 @@ make watch
 ## Extra Links
 
 - [猴子排序 - 一种不实用的排序算法](http://zh.wikipedia.org/wiki/Bogo%E6%8E%92%E5%BA%8F)
+
+- BSR (Bit Scan Reverse in ASM)
