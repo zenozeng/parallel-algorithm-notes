@@ -21,9 +21,9 @@ This is our (mainly mine and Zhudhjen's) notes for Parallel Algorithms course.
 
 3. [Linked List](http://zenozeng.github.io/parallel-algorithm-notes/dist/03.html) by Zeno Zeng
 
-４. 这节课我没去。等待有缘人。
+4. 这节课我没去。等待有缘人。
 
-5. [Lecture 05]() by Zeno Zeng
+5. [Lecture 05](http://zenozeng.github.io/parallel-algorithm-notes/dist/05.html) by Zeno Zeng
 
 ## Dev
 
