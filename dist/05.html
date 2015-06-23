@@ -152,6 +152,56 @@
 <p>Bitonic Sorting 的时间复杂度为：<span class="math">\(O(\frac{n}{p}\log^2{n}+\log^2{n})\)</span>。</p>
 <p>Hint: 如果需要简单的估算复杂度，可以直接取中间一段的最小值然后乘以那一段的 steps 作为下界。 对于上界，可以用最大复杂度乘以总体的 steps。</p>
 <h2 id="valiants-merging">Valiant's Merging</h2>
+<p>现在假设我们有两条排好序的数列，长度分别为 <span class="math">\(n\)</span> 和 <span class="math">\(m\)</span>，然后我们有 <span class="math">\(m+n\)</span> 个 processors。</p>
+<p>对于 <span class="math">\(n\)</span> 我们每 <span class="math">\(\sqrt{n}\)</span> 取一个节点，一共取出 <span class="math">\(\sqrt{n}\)</span> 个节点。 对于 <span class="math">\(m\)</span> 我们每 <span class="math">\(\sqrt{m}\)</span> 取一个节点，一共取出 <span class="math">\(\sqrt{m}\)</span> 个节点。 对于每个点，我们将其与另一条线上的所有点相连。 这样一来我们一共得到了 <span class="math">\(\sqrt{mn}\)</span> 条 links。</p>
+<p><span class="math">\[
+\newcommand{\node}[1]{
+    \enclose{circle}[mathcolor=&quot;black&quot;, padding=&quot;10px&quot;, thickness=&quot;1px&quot;]{\color{black}{#1}}
+}
+\]</span></p>
+<p><span class="math">\[
+\begin{xy}
+\xymatrix {
+    \node{0}
+    &amp; \node{\sqrt{n}}　\ar[ld] \ar[d] \ar[rd] \ar[rrd] \ar[rrrd]
+    &amp; \node{2\sqrt{n}}
+    &amp; \node{3\sqrt{n}}
+    &amp; \node{4\sqrt{n}}
+    &amp;...
+    \\
+    \node{0}
+    &amp; \node{\sqrt{m}}
+    &amp; \node{2\sqrt{m}}
+    &amp; \node{3\sqrt{m}}
+    &amp; \node{4\sqrt{m}}
+    &amp;...
+}
+\end{xy}
+\]</span></p>
+<p>对每条边我们比较两边的大小。这样一共需要计算 <span class="math">\(\sqrt{mn}\)</span> 次，通过不等式， 我们很容易证明 <span class="math">\(\sqrt{mn} &lt; m + n\)</span>，所以处理器肯定是够用的。</p>
+<p><span class="math">\[
+\begin{xy}
+\xymatrix {
+    \node{0}
+    &amp; \node{\sqrt{n}}　\ar[ld] \ar[d] \ar[rd] \ar[rrd] \ar[rrrd]
+    &amp; \node{2\sqrt{n}}
+    &amp; \node{3\sqrt{n}}
+    &amp; \node{4\sqrt{n}}
+    &amp;...
+    \\
+    \node{0}
+    &amp; \node{\sqrt{m}}
+    &amp; \node{2\sqrt{m}}
+    &amp; \node{3\sqrt{m}}
+    &amp; \node{4\sqrt{m}}
+    &amp;...
+    \\
+    0 &amp; 0 &amp; 0 &amp; １ &amp; 1 &amp; ...
+}
+\end{xy}
+\]</span></p>
+<p>我们比较结果，如果小于则写 0 在那条边上，如果大于则写 1 在那条边上。 对于一个节点其第一个 0 - 1 交替的位置就是我们要找的位置。 这样我们知道将 <span class="math">\(\sqrt{n}\)</span> 这个节点要被插在 <span class="math">\(2\sqrt{m}\)</span> 和 <span class="math">\(3\sqrt{m}\)</span> 之间。</p>
+<p>接下来我们要知道它具体要插在 <span class="math">\(2\sqrt{m}\)</span> 和 <span class="math">\(3\sqrt{m}\)</span> 之间哪个位置。 所以我们将 <span class="math">\(\sqrt{n}\)</span> 这个节点的值与 <span class="math">\(2\sqrt{m}\)</span> 和 <span class="math">\(3\sqrt{m}\)</span> 之间所有 <span class="math">\(\sqrt{m}\)</span> 个值进行比较。 而我们一共有 <span class="math">\(\sqrt{n} \times \sqrt{m} + \sqrt{m} \times \sqrt{n}\)</span> 次计算（课上说的好像是<span class="math">\(m+n\)</span>？）要进行，所以我们的处理器还是够的。</p>
 <p>时间复杂度为：<span class="math">\(O(\frac{n}{p}\log\log{n} + \log\log{n})\)</span></p>
 <h2 id="valiants-sorting">Valiant's Sorting</h2>
 <p>就是将利用之前 Bitonic Sorting 所述的方法，将 Merging 转换为 Sorting。</p>
