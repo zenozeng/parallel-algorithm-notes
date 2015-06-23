@@ -27,7 +27,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
   </style>
   <link rel="stylesheet" href="../static/github.css" type="text/css" />
   <link rel="stylesheet" href="../static/styles.css" type="text/css" />
-  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  <script src="//zenozeng.github.io/MathJax/init.js" type="text/javascript"></script>
 </head>
 <body>
 <h1 id="lecture-03">Lecture 03</h1>
@@ -86,7 +86,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <p>每次缩减尺寸之后，由于一些点被移除了，我们需要重新 pack array（就是把有效项移动到前面去）， 这样我们才能继续使用我们之前所说的二分算法。否则时间上就只是 <span class="math">\(n\)</span> 而不是 <span class="math">\(\frac{2}{3}n\)</span>。 所以我们把需要保留的点标记为 1 而剩下的点标记为 0，然后做一次 prefix sum， 这样我们就得到了新的 array。</p>
 <h2 id="整个过程">整个过程</h2>
 <ol style="list-style-type: decimal">
-<li><p>Coloring</p></li>
+<li><p>Coloring: <span class="math">\(O(\frac{p}{n})\)</span></p></li>
 <li><p>Sort nodes by color</p></li>
 <li><p>Get maximal independent set</p></li>
 <li><p>Merge nodes</p></li>

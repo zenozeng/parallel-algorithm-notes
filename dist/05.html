@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../static/github.css" type="text/css" />
+  <link rel="stylesheet" href="../static/styles.css" type="text/css" />
+  <script src="//zenozeng.github.io/MathJax/init.js" type="text/javascript"></script>
+</head>
+<body>
+<h1 id="lecture-05">Lecture 05</h1>
+<h2 id="section">08:00-09:00</h2>
+<p>这一部分我没到。我不是很清楚讲了什么。后面摘了一些东西。</p>
+<p>我们需要　<span class="math">\(\frac{n}{\log{n}}\)</span> processors 和　<span class="math">\(\frac{n}{p}+\log{n}\)</span> time。</p>
+<p>Pack: <span class="math">\(\frac{n}{p} + \log{n}\)</span>。</p>
+<p>这个算法用于初步缩减 n 的数量使之小于　<span class="math">\(n\log{n}\)</span>。 这样我们之后就可以用　pointer jumping。</p>
+<p>这里我们说的高度为其格数，然后其　weight 为 1, 2, 4, 8... 然后我们就可以证明经过一次　round，总 weight 至少减少　<span class="math">\(\frac{1}{4}\)</span>。</p>
+<p>由于　<span class="math">\(weight &gt; 1\)</span>，所以必然有　<span class="math">\(node.length &gt; \sum{weight}\)</span>。</p>
+<h2 id="bitonic-merging">Bitonic Merging</h2>
+<p>假设我们有两个排好序的数列，他们方向相反，我们把他们接起来</p>
+<p><span class="math">\[
+2 - 5 - 7 - 8 - 10
+\]</span></p>
+<p><span class="math">\[
+12 - 4 - 0
+\]</span></p>
+<p>然后二分</p>
+<p><span class="math">\[
+\begin{xy}
+\xymatrix {
+      2 \ar@/^2pc/ [rrrrr]
+    &amp; 5 \ar@/^2pc/ [rrrrr]
+    &amp; 7 \ar@/^2pc/ [rrrrr]
+    &amp; 8 \ar@/^2pc/ [rrrrr]
+    &amp; |
+    &amp; 10
+    &amp; 12
+    &amp; 4
+    &amp; 0 \ar
+}
+\end{xy}
+\]</span></p>
+<p>交换，将小数置前</p>
+<p><span class="math">\[
+\begin{xy}
+\xymatrix {
+      2
+    &amp; 5
+    &amp; 4
+    &amp; 0
+    &amp; |
+    &amp; 10
+    &amp; 12
+    &amp; 7
+    &amp; 8
+}
+\end{xy}
+\]</span></p>
+<p>再对半分</p>
+<p><span class="math">\[
+\begin{xy}
+\xymatrix {
+      2 \ar@/^2pc/ [rrr]
+    &amp; 5 \ar@/^2pc/ [rrr]
+    &amp; |
+    &amp; 4
+    &amp; 0
+    &amp; |
+    &amp; 10 \ar@/^2pc/ [rrr]
+    &amp; 12 \ar@/^2pc/ [rrr]
+    &amp; |
+    &amp; 7
+    &amp; 8
+}
+\end{xy}
+\]</span></p>
+<p>交换，将小数置前</p>
+<p><span class="math">\[
+\begin{xy}
+\xymatrix {
+      2
+    &amp; 0
+    &amp; 4
+    &amp; 5
+    &amp; 7
+    &amp; 8
+    &amp; 10
+    &amp; 12
+}
+\end{xy}
+\]</span></p>
+<p>再二分</p>
+<p><span class="math">\[
+\begin{xy}
+\xymatrix {
+      2 \ar@/^2pc/ [r]
+    &amp; 0
+    &amp; 4 \ar@/^2pc/ [r]
+    &amp; 5
+    &amp; 7 \ar@/^2pc/ [r]
+    &amp; 8
+    &amp; 10 \ar@/^2pc/ [r]
+    &amp; 12
+}
+\end{xy}
+\]</span></p>
+<p>交换，将小数置前，这就是我们最终 merge 的结果了</p>
+<p><span class="math">\[
+\begin{xy}
+\xymatrix {
+      0
+    &amp; 2
+    &amp; 4
+    &amp; 5
+    &amp; 7
+    &amp; 8
+    &amp; 10
+    &amp; 12
+}
+\end{xy}
+\]</span></p>
+</body>
+</html>
