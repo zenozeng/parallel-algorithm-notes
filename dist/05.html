@@ -201,7 +201,15 @@
 \end{xy}
 \]</span></p>
 <p>我们比较结果，如果小于则写 0 在那条边上，如果大于则写 1 在那条边上。 对于一个节点其第一个 0 - 1 交替的位置就是我们要找的位置。 这样我们知道将 <span class="math">\(\sqrt{n}\)</span> 这个节点要被插在 <span class="math">\(2\sqrt{m}\)</span> 和 <span class="math">\(3\sqrt{m}\)</span> 之间。</p>
-<p>接下来我们要知道它具体要插在 <span class="math">\(2\sqrt{m}\)</span> 和 <span class="math">\(3\sqrt{m}\)</span> 之间哪个位置。 所以我们将 <span class="math">\(\sqrt{n}\)</span> 这个节点的值与 <span class="math">\(2\sqrt{m}\)</span> 和 <span class="math">\(3\sqrt{m}\)</span> 之间所有 <span class="math">\(\sqrt{m}\)</span> 个值进行比较。 而我们一共有 <span class="math">\(\sqrt{n} \times \sqrt{m} + \sqrt{m} \times \sqrt{n}\)</span> 次计算（课上说的好像是<span class="math">\(m+n\)</span>？）要进行，所以我们的处理器还是够的。</p>
+<p>接下来我们要知道它具体要插在 <span class="math">\(2\sqrt{m}\)</span> 和 <span class="math">\(3\sqrt{m}\)</span> 之间哪个位置。 所以我们将 <span class="math">\(\sqrt{n}\)</span> 这个节点的值与 <span class="math">\(2\sqrt{m}\)</span> 和 <span class="math">\(3\sqrt{m}\)</span> 之间所有 <span class="math">\(\sqrt{m}\)</span> 个值进行比较。 而我们一共有 <span class="math">\(\sqrt{n} \times \sqrt{m} + \sqrt{m} \times \sqrt{n}\)</span> 次计算（课上说的好像是<span class="math">\(m+n\)</span>？但是我和郭翀都觉得是 <span class="math">\(2\sqrt{mn}\)</span>）要进行，所以我们的处理器还是够的。</p>
+<p>要注意的是我们不可能出现交叉的情况： <span class="math">\[
+\begin{xy}
+\xymatrix {
+    A \ar[rd] &amp; B \\
+    C \ar[ru] &amp; D
+}
+\end{xy}
+\]</span> 因为我们两个数列都是排好序的，已知了 <span class="math">\(A &lt; B\)</span>，<span class="math">\(C &lt; D\)</span>。 如果有 <span class="math">\(B &lt; C\)</span> 则有 <span class="math">\(B &lt; D\)</span>，则 <span class="math">\(A\rightarrow{D}\)</span> 这条 link 并不该存在。</p>
 <p>时间复杂度为：<span class="math">\(O(\frac{n}{p}\log\log{n} + \log\log{n})\)</span></p>
 <h2 id="valiants-sorting">Valiant's Sorting</h2>
 <p>就是将利用之前 Bitonic Sorting 所述的方法，将 Merging 转换为 Sorting。</p>
