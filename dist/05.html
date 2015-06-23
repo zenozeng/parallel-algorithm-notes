@@ -18,7 +18,7 @@
 <p>Pack: <span class="math">\(\frac{n}{p} + \log{n}\)</span>。</p>
 <p>这个算法用于初步缩减 n 的数量使之小于　<span class="math">\(n\log{n}\)</span>。 这样我们之后就可以用　pointer jumping。</p>
 <p>这里我们说的高度为其格数，然后其　weight 为 1, 2, 4, 8... 然后我们就可以证明经过一次　round，总 weight 至少减少　<span class="math">\(\frac{1}{4}\)</span>。</p>
-<p>由于　<span class="math">\(weight &gt; 1\)</span>，所以必然有　<span class="math">\(node.length &gt; \sum{weight}\)</span>。</p>
+<p>由于　<span class="math">\(weight &gt; 1\)</span>，所以必然有　<span class="math">\(count(nodes) &gt; \sum{weight}\)</span>。</p>
 <h2 id="bitonic-merging">Bitonic Merging</h2>
 <p>假设我们有两个<strong>排好序</strong>的数列，他们方向相反，我们把他们接起来</p>
 <p><span class="math">\[
