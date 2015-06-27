@@ -210,15 +210,7 @@
 \]</span></p>
 <p>我们比较结果，如果小于则写 0 在那条边上，如果大于则写 1 在那条边上。 对于一个节点其第一个 0 - 1 交替的位置就是我们要找的位置。 这样我们知道将 <span class="math">\(\sqrt{n}\)</span> 这个节点要被插在 <span class="math">\(2\sqrt{m}\)</span> 和 <span class="math">\(3\sqrt{m}\)</span> 之间。</p>
 <p>接下来我们要知道它具体要插在 <span class="math">\(2\sqrt{m}\)</span> 和 <span class="math">\(3\sqrt{m}\)</span> 之间哪个位置。 所以我们将 <span class="math">\(\sqrt{n}\)</span> 这个节点的值与 <span class="math">\(2\sqrt{m}\)</span> 和 <span class="math">\(3\sqrt{m}\)</span> 之间所有 <span class="math">\(\sqrt{m}\)</span> 个值进行比较。 而我们一共有 <span class="math">\(\sqrt{n} \times \sqrt{m} + \sqrt{m} \times \sqrt{n}\)</span> 次计算（课上说的好像是<span class="math">\(m+n\)</span>？但是我和郭翀都觉得是 <span class="math">\(2\sqrt{mn}\)</span>）要进行， 所以我们的处理器还是够的。</p>
-<p>要注意的是，我们不能只做一边的，否则在极端情况下，比如第一条整条小于第二条的情况下， 算法会退化。</p>
-<div class="figure">
-<img src="05-vm-00.jpg" alt="05-vm-00" /><p class="caption">05-vm-00</p>
-</div>
-<p>只有两边都做了，我们才能限定双向范围。</p>
-<div class="figure">
-<img src="05-vm-01.jpg" alt="05-vm-01" /><p class="caption">05-vm-01</p>
-</div>
-<p>(Thanks to 邬凡, 黄TA, xqy)</p>
+<p>要注意的是，我们不能只做一边的， 只有两边都做了，我们才能确定双向范围。</p>
 <p>还有要注意的是，我们每次 round 都只是标记（来限定范围）而已， 只有所有 round 结束了我们才会发生具体的操作。</p>
 <p>经过上一步，我们初步对这 <span class="math">\(\sqrt{m}\)</span> 和 <span class="math">\(\sqrt{n}\)</span> 段进行了 merge。 接下来我们对每一条之前 link 对应的 <span class="math">\(\sqrt{m} + \sqrt{n}\)</span> 个数据， 我们已经知道了这 <span class="math">\(\sqrt{m} + \sqrt{n}\)</span> 的整体位置。</p>
 <p>接下来，我们做和上一步一样的事情。这次一共有 <span class="math">\(\sqrt{mn}\)</span> 组， 每组有 <span class="math">\(\sqrt{m} + \sqrt{n}\)</span> 个数据。每组需要的处理器数是 <span class="math">\(2(mn)^{\frac{1}{4}}\)</span>。 所以处理器还是够的。</p>
