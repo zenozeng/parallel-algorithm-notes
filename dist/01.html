@@ -34,11 +34,18 @@
 <p>Theorem for lower bound of time: A step with <span class="math">\(P\)</span> processors in <span class="math">\(T\)</span> time can be translated into a sequential processor in <span class="math">\(P\cdot{T}\)</span> time.</p>
 <p>So for best sequential time <span class="math">\(T_1\)</span>, then <span class="math">\(P\cdot{T_P}\geq{T}_1\)</span>.</p>
 <p>So for summing, the sequential time is <span class="math">\(O(n)\)</span> (in fact <span class="math">\(n-1\)</span>), this is the lower bound for <span class="math">\(P\cdot{T}\)</span></p>
-<h2 id="machine-model">Machine Model</h2>
+<h2 id="model">Model</h2>
 <p>PRAM: Parallel Random Access Machine.</p>
 <p>EREW: Exclusive read exclusive write.</p>
 <p>CREW: Concurrent read exclusive write.</p>
-<p>CRCW: Concurrent read concurrent write. Conflict-resolution includes arbitrary, priority (by process index), common (have to write same value). Common &lt; arbitrary &lt; priority.</p>
+<p>CRCW: Concurrent read concurrent write.</p>
+<h3 id="conflict-resolution">Conflict-resolution</h3>
+<p>Common &lt; arbitrary &lt; priority</p>
+<ul>
+<li><p>arbitrary</p></li>
+<li><p>priority (by process index)</p></li>
+<li><p>common (have to write same value)</p></li>
+</ul>
 <h2 id="example-2">Example 2</h2>
 <p>Find smallest number:</p>
 <ol style="list-style-type: decimal">
