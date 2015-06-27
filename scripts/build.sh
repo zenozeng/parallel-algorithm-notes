@@ -15,3 +15,4 @@ done
 
 cp src/*.gif dist
 cp src/*.png dist
+cp src/*.jpg dist
