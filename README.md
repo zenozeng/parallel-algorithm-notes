@@ -17,7 +17,7 @@ This is our (mainly mine and Zhudhjen's) notes for Parallel Algorithms course.
 
 1. [Important factors, parallel summing, machine model and parallel min](http://zenozeng.github.io/parallel-algorithm-notes/dist/01.html) by Zhang Hai
 
-2. [Prefix Sum and Parallel Sorting](http://zenozeng.github.io/parallel-algorithm-notes/dist/02.html) by Zeno Zeng and Zhudhjen
+2. [Prefix Sum and Parallel Sorting](http://zenozeng.github.io/parallel-algorithm-notes/dist/02.html) by Zeno Zeng, Zhudhjen and CSerxy
 
 3. [Linked List](http://zenozeng.github.io/parallel-algorithm-notes/dist/03.html) by Zeno Zeng
 
